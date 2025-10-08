@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/agntcy/slim/compare/helm-slim-v0.2.0...helm-slim-v0.2.1) (2025-10-08)
+
+
+### Bug Fixes
+
+* add group id to node id ([#746](https://github.com/agntcy/slim/issues/746)) ([06c42b3](https://github.com/agntcy/slim/commit/06c42b3f3846da331554ac72ec6d77e61876d78d))
+
 ## [0.2.0](https://github.com/agntcy/slim/compare/helm-slim-v0.1.9...helm-slim-v0.2.0) (2025-09-18)
 
 
