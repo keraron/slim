@@ -1,9 +1,3 @@
-/* Hide version selector by search bar (mike/Material inject it when versioned) */
-.md-header [data-md-component="version-selector"],
-.md-header .md-header__version {
-  display: none !important;
-}
-
 [data-md-color-scheme="default"] {
   --md-primary-fg-color: rgb(243, 246, 253);
   --md-primary-bg-color: rgb(2, 81, 175);
