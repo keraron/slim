@@ -63,7 +63,15 @@ tasks:
       - |
         cd mkdocs && \
         export PATH="$(pwd)/bin:$(pwd)/.venv/bin:$PATH" && \
-        MIKE_DOCS_VERSION={{.VERSION}} .venv/bin/mike deploy {{.VERSION}} latest -b gh-pages -r origin -p --update-aliases
+        MIKE_DOCS_VERSION={{.VERSION}} .venv/bin/mike deploy {{.VERSION}} latest -b gh-pages -r origin -p --update-aliases && \
+        .venv/bin/mike set-default latest -b gh-pages -r origin -p
+
+  docs:set-default:
+    desc: Set default docs version to latest (root URL redirects to /latest/)
+    deps:
+      - docs-deps
+    cmds:
+      - pushd mkdocs && .venv/bin/mike set-default latest -b gh-pages -r origin -p && popd
 
   docs:serve-versioned:
     desc: Serve versioned docs from gh-pages branch (as on production)
