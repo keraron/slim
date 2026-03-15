@@ -1,5 +1,6 @@
 site_name: SLIM
-site_url: https://docs.agntcy.org/
+# Base URL for the docs site; mike appends version (e.g. /1.0/, /latest/)
+site_url: https://keraron.github.io/slim/
 
 # SLIM docs only; nav structure from docs/slim/.index
 docs_dir: ../docs/slim
@@ -12,6 +13,8 @@ repo_url: https://github.com/agntcy/slim
 edit_uri: edit/main/docs/slim/
 
 extra:
+  version:
+    provider: mike
   copyright: >
     © Copyright AGNTCY Contributors.
     <a href="#__consent">Change cookie settings</a>
@@ -53,6 +56,11 @@ hooks:
   - hooks.py
 
 plugins:
+  mike:
+    version_selector: true
+    alias_type: symlink
+    deploy_prefix: ""
+    canonical_version: null
   search:
   redirects:
     redirect_maps:

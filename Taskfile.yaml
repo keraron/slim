@@ -47,8 +47,27 @@ tasks:
         echo "Docs available at: file://{{.BUILD_SITE_DIR}}/index.html"
 
   run:
-    desc: Run documentation website in live editing mode
+    desc: Run documentation website in live editing mode (with mike version selector)
     deps:
       - docs-deps
     cmds:
-      - pushd mkdocs && uv run mkdocs serve --dev-addr 127.0.0.1:{{.DOCS_PORT}} && popd
+      - pushd mkdocs && MIKE_DOCS_VERSION=dev uv run python -m mkdocs serve --dev-addr 127.0.0.1:{{.DOCS_PORT}} && popd
+
+  docs:deploy:
+    desc: Deploy versioned docs to gh-pages with mike (task docs:deploy -v VERSION=1.0.0)
+    deps:
+      - docs-deps
+    vars:
+      VERSION: "dev"
+    cmds:
+      - |
+        cd mkdocs && \
+        export PATH="$(pwd)/bin:$(pwd)/.venv/bin:$PATH" && \
+        MIKE_DOCS_VERSION={{.VERSION}} .venv/bin/mike deploy {{.VERSION}} latest -b gh-pages -r origin -p --update-aliases
+
+  docs:serve-versioned:
+    desc: Serve versioned docs from gh-pages branch (as on production)
+    deps:
+      - docs-deps
+    cmds:
+      - pushd mkdocs && uv run mike serve -a 127.0.0.1:{{.DOCS_PORT}} && popd

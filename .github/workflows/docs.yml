@@ -1,29 +1,34 @@
 # Copyright AGNTCY Contributors (https://github.com/agntcy)
 # SPDX-License-Identifier: Apache-2.0
-# Build and deploy the documentation site to GitHub Pages.
+# Build and deploy versioned documentation to gh-pages using mike.
+# See https://github.com/jimporter/mike
 
 name: Docs
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+  push:
+    tags: ["v*"]
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: "pages"
+  group: "docs-${{ github.ref }}"
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch gh-pages
+        run: git fetch origin gh-pages --depth=1 || true
 
       - name: Setup uv
         uses: astral-sh/setup-uv@v4
@@ -33,24 +38,35 @@ jobs:
       - name: Set up Python
         run: uv python install 3.12
 
-      - name: Install dependencies and build
+      - name: Install dependencies
+        working-directory: mkdocs
+        run: uv sync
+
+      - name: Set version from ref
+        id: version
+        run: |
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+            echo "update_aliases=true" >> $GITHUB_OUTPUT
+          else
+            echo "version=dev" >> $GITHUB_OUTPUT
+            echo "update_aliases=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy with mike
         working-directory: mkdocs
         run: |
-          uv sync
-          uv run mkdocs build --strict
+          if [ "${{ steps.version.outputs.update_aliases }}" = "true" ]; then
+            uv run mike deploy "${{ steps.version.outputs.version }}" latest --update-aliases -b gh-pages -r origin -p
+          else
+            uv run mike deploy "${{ steps.version.outputs.version }}" latest -b gh-pages -r origin -p
+          fi
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: mkdocs/site
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deploy
-        uses: actions/deploy-pages@v4
+      - name: Set default version
+        working-directory: mkdocs
+        run: uv run mike set-default latest -b gh-pages -r origin -p

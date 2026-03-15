@@ -1,63 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://docs.agntcy.org/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/overview/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-a2a/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-a2a/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-authentication/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-authentication/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-controller/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-controller/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-data-plane-config/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-data-plane-config/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-data-plane/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-data-plane/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-group-tutorial/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-group-tutorial/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-group/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-group/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-howto/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-howto/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-mcp/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-mcp/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-otel/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-otel/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-rpc/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-rpc/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-session/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/slim-session/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim-slimrpc-compiler/</loc>
+         <loc>https://keraron.github.io/slim/1.0.0/slim-slimrpc-compiler/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
 </urlset>

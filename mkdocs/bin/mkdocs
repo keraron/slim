@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Wrapper so mike's subprocess uses this venv's mkdocs (mike plugin must be in same env)
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+if printf '%s\n' "$@" | grep -q '^--version$'; then
+  "$ROOT/.venv/bin/python" -m mkdocs "$@" | sed 's/^python -m mkdocs/mkdocs/'
+else
+  exec "$ROOT/.venv/bin/python" -m mkdocs "$@"
+fi
