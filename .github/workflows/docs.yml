@@ -5,9 +5,9 @@
 
 name: Docs
 
+# Only deploy on version tags (e.g. v1.0.3). Pushes to main do not deploy;
+# that avoids re-adding a "dev" version and keeps "latest" pointing at the tagged release.
 on:
-  push:
-    branches: [main]
   push:
     tags: ["v*"]
 
