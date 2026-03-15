@@ -1,14 +1,15 @@
-site_name: Agntcy
+site_name: SLIM
 site_url: https://docs.agntcy.org/
 
-docs_dir: ../docs
+# SLIM docs only; nav structure from docs/slim/.index
+docs_dir: ../docs/slim
 
 # Local dev server (used by `mkdocs serve` and `task run`)
-dev_addr: "127.0.0.1:8000"
+dev_addr: "127.0.0.1:8001"
 
-repo_name: agntcy/docs
-repo_url: https://github.com/agntcy/docs
-edit_uri: edit/main/docs/
+repo_name: agntcy/slim
+repo_url: https://github.com/agntcy/slim
+edit_uri: edit/main/docs/slim/
 
 extra:
   copyright: >
@@ -55,21 +56,20 @@ plugins:
   search:
   redirects:
     redirect_maps:
-      'how-to-guides/identity-quickstart/index.md': 'identity/identity-quickstart.md'
-      'how-to-guides/agent-directory/index.md': 'dir/getting-started.md'
-      'messaging/slim-core.md': 'slim/overview.md'
-      'messaging/slim-a2a.md': 'slim/slim-a2a.md'
-      'messaging/slim-authentication.md': 'slim/slim-authentication.md'
-      'messaging/slim-controller.md': 'slim/slim-controller.md'
-      'messaging/slim-data-plane-config.md': 'slim/slim-data-plane-config.md'
-      'messaging/slim-data-plane.md': 'slim/slim-data-plane.md'
-      'messaging/slim-group-tutorial.md': 'slim/slim-group-tutorial.md'
-      'messaging/slim-group.md': 'slim/slim-group.md'
-      'messaging/slim-howto.md': 'slim/slim-howto.md'
-      'messaging/slim-mcp.md': 'slim/slim-mcp.md'
-      'messaging/slim-rpc.md': 'slim/slim-rpc.md'
-      'messaging/slim-session.md': 'slim/slim-session.md'
-      'messaging/slim-slimrpc-compiler.md': 'slim/slim-slimrpc-compiler.md'
+      'messaging/slim-core.md': 'overview.md'
+      'messaging/slim-a2a.md': 'slim-a2a.md'
+      'messaging/slim-authentication.md': 'slim-authentication.md'
+      'messaging/slim-controller.md': 'slim-controller.md'
+      'messaging/slim-data-plane-config.md': 'slim-data-plane-config.md'
+      'messaging/slim-data-plane.md': 'slim-data-plane.md'
+      'messaging/slim-group-tutorial.md': 'slim-group-tutorial.md'
+      'messaging/slim-group.md': 'slim-group.md'
+      'messaging/slim-howto.md': 'slim-howto.md'
+      'messaging/slim-mcp.md': 'slim-mcp.md'
+      'messaging/slim-rpc.md': 'slim-rpc.md'
+      'messaging/slim-session.md': 'slim-session.md'
+      'messaging/slim-slimrpc-compiler.md': 'slim-slimrpc-compiler.md'
+      'messaging/slim-otel.md': 'slim-otel.md'
   awesome-pages:
     filename: ".index"
     collapse_single_pages: true

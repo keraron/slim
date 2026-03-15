@@ -5,287 +5,59 @@
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/contributing/</loc>
+         <loc>https://docs.agntcy.org/overview/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/glossary/</loc>
+         <loc>https://docs.agntcy.org/slim-a2a/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/coffee-agntcy/get-started/</loc>
+         <loc>https://docs.agntcy.org/slim-authentication/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/coffee-agntcy/identity-coffee-agntcy/</loc>
+         <loc>https://docs.agntcy.org/slim-controller/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/coffee-agntcy/slim-coffee-agntcy/</loc>
+         <loc>https://docs.agntcy.org/slim-data-plane-config/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/csit/csit/</loc>
+         <loc>https://docs.agntcy.org/slim-data-plane/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/dir/ads-records/</loc>
+         <loc>https://docs.agntcy.org/slim-group-tutorial/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/dir/architecture/</loc>
+         <loc>https://docs.agntcy.org/slim-group/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/dir/dir-api-reference/</loc>
+         <loc>https://docs.agntcy.org/slim-howto/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/dir/directory-cli/</loc>
+         <loc>https://docs.agntcy.org/slim-mcp/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/dir/directory-gui/</loc>
+         <loc>https://docs.agntcy.org/slim-otel/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/dir/directory-sdk/</loc>
+         <loc>https://docs.agntcy.org/slim-rpc/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/dir/events/</loc>
+         <loc>https://docs.agntcy.org/slim-session/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://docs.agntcy.org/dir/federation-profiles/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/dir/federation-troubleshooting/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/dir/getting-started/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/dir/overview/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/dir/partner-prod-federation/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/dir/prod-deployment/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/dir/runtime/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/dir/scenarios/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/dir/trust-model/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/dir/validation/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/arch_diagrams/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/connecting_idp/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/creating_identities/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/creating_policies/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/credentials/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/flow/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identifier_examples/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identifiers/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identity-quickstart/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identity/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identity_service/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identity_service_api/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identity_service_api_access/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identity_service_contributing/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identity_service_development/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identity_service_protofiles/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identity_service_sdk/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/identity_service_settings/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/openapi/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/vc_agent_badge/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/vc_mcp/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/identity/verify_identity/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/oasf/agent-record-guide/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/oasf/contributing/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/oasf/decoding/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/oasf/oasf-sdk/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/oasf/oasf-server/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/oasf/open-agentic-schema-framework/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/oasf/translation/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/oasf/validation-comparison/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/oasf/validation/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/obs-and-eval/evaluation/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/obs-and-eval/observe-and-eval/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/obs-and-eval/observe-sdk/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/overview/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-a2a/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-authentication/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-controller/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-data-plane-config/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-data-plane/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-group-tutorial/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-group/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-howto/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-mcp/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-otel/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-rpc/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-session/</loc>
-         <lastmod>2026-03-15</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.agntcy.org/slim/slim-slimrpc-compiler/</loc>
+         <loc>https://docs.agntcy.org/slim-slimrpc-compiler/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
 </urlset>
