@@ -13,8 +13,6 @@ repo_url: https://github.com/agntcy/slim
 edit_uri: edit/main/docs/slim/
 
 extra:
-  version:
-    provider: mike
   copyright: >
     © Copyright AGNTCY Contributors.
     <a href="#__consent">Change cookie settings</a>
@@ -57,7 +55,7 @@ hooks:
 
 plugins:
   mike:
-    version_selector: true
+    version_selector: false
     alias_type: symlink
     deploy_prefix: ""
     canonical_version: null
