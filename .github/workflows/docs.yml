@@ -61,12 +61,13 @@ jobs:
       - name: Deploy with mike
         working-directory: mkdocs
         run: |
+          export PATH="$(pwd)/bin:$(pwd)/.venv/bin:$PATH"
           if [ "${{ steps.version.outputs.update_aliases }}" = "true" ]; then
-            uv run mike deploy "${{ steps.version.outputs.version }}" latest --update-aliases -b gh-pages -r origin -p
+            MIKE_DOCS_VERSION="${{ steps.version.outputs.version }}" .venv/bin/mike deploy "${{ steps.version.outputs.version }}" latest --update-aliases -b gh-pages -r origin -p
           else
-            uv run mike deploy "${{ steps.version.outputs.version }}" latest -b gh-pages -r origin -p
+            MIKE_DOCS_VERSION="${{ steps.version.outputs.version }}" .venv/bin/mike deploy "${{ steps.version.outputs.version }}" latest -b gh-pages -r origin -p
           fi
 
       - name: Set default version
         working-directory: mkdocs
-        run: uv run mike set-default latest -b gh-pages -r origin -p
+        run: .venv/bin/mike set-default latest -b gh-pages -r origin -p

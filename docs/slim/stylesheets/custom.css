@@ -1,6 +1,8 @@
-/* Hide version selector by search bar (mike/Material inject it when versioned) */
+/* Hide version selector by search bar (mike/Material inject it when versioned).
+   Keep: ensures deployed site matches local (no version dropdown). */
 .md-header [data-md-component="version-selector"],
-.md-header .md-header__version {
+.md-header .md-header__version,
+.md-header select[aria-label*="version" i] {
   display: none !important;
 }
 
