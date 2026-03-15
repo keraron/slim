@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://keraron.github.io/slim/dev/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-a2a/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-a2a/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-authentication/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-authentication/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-controller/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-controller/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-data-plane-config/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-data-plane-config/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-data-plane/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-data-plane/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-group-tutorial/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-group-tutorial/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-group/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-group/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-howto/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-howto/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-mcp/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-mcp/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-otel/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-otel/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-rpc/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-rpc/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-session/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-session/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
     <url>
-         <loc>https://keraron.github.io/slim/dev/slim-slimrpc-compiler/</loc>
+         <loc>https://keraron.github.io/slim/1.0.2/slim-slimrpc-compiler/</loc>
          <lastmod>2026-03-15</lastmod>
     </url>
 </urlset>
