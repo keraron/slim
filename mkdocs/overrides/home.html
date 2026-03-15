@@ -1,0 +1,66 @@
+{% extends "main.html" %}
+{% block tabs %}
+  {{ super() }}
+  <style>
+    .md-header { position: initial; }
+    .md-main__inner { margin: 0; }
+    .md-content { display: none; }
+    @media screen and (min-width: 60em) {
+      .md-sidebar--secondary { display: none; }
+    }
+    @media screen and (min-width: 76.25em) {
+      .md-sidebar--primary { display: none; }
+    }
+  </style>
+  <section class="mdx-container">
+    <div class="md-grid md-typeset">
+      <div class="mdx-hero">
+        <div class="mdx-hero__content">
+          <h1>AGNTCY Documentation</h1>
+          <p class="mdx-hero__description">
+            Open infrastructure for the Internet of Agents. Discover, compose, deploy, and evaluate multi-agent applications.
+          </p>
+        </div>
+      </div>
+      <div class="landing-cards">
+        <a href="{{ base_url if base_url != '.' else '' }}oasf/open-agentic-schema-framework/" class="landing-card" aria-label="Open Agentic Schema Framework">
+          <h3 class="landing-card__title">Open Agentic Schema Framework</h3>
+          <p class="landing-card__description">Standardized schema system for defining and managing AI agent capabilities, interactions, and metadata.</p>
+        </a>
+        <a href="{{ base_url if base_url != '.' else '' }}dir/overview/" class="landing-card" aria-label="Agent Directory Service">
+          <h3 class="landing-card__title">Agent Directory Service</h3>
+          <p class="landing-card__description">Discover and announce agents. Distributed directory with content-routing for agent discovery.</p>
+        </a>
+        <a href="{{ base_url if base_url != '.' else '' }}slim/overview/" class="landing-card" aria-label="SLIM Messaging">
+          <h3 class="landing-card__title">SLIM</h3>
+          <p class="landing-card__description">Secure Low-latency Interactive Messaging. Transport layer for A2A, MCP, and agent communication.</p>
+        </a>
+        <a href="{{ base_url if base_url != '.' else '' }}identity/identity/" class="landing-card" aria-label="Identity">
+          <h3 class="landing-card__title">Identity</h3>
+          <p class="landing-card__description">Manage and verify identities of agents and tools with decentralized credentials.</p>
+        </a>
+        <a href="{{ base_url if base_url != '.' else '' }}obs-and-eval/observe-and-eval/" class="landing-card" aria-label="Observability and Evaluation">
+          <h3 class="landing-card__title">Observability & Evaluation</h3>
+          <p class="landing-card__description">Telemetry, traces, and metrics for multi-agent system observability and evaluation.</p>
+        </a>
+        <a href="{{ base_url if base_url != '.' else '' }}coffee-agntcy/get-started/" class="landing-card" aria-label="Get Started with CoffeeAGNTCY">
+          <h3 class="landing-card__title">Getting Started</h3>
+          <p class="landing-card__description">CoffeeAGNTCY reference implementation. Build and run multi-agent applications step by step.</p>
+        </a>
+        <a href="{{ base_url if base_url != '.' else '' }}glossary/" class="landing-card" aria-label="Glossary">
+          <h3 class="landing-card__title">Glossary</h3>
+          <p class="landing-card__description">Definitions and terms used across the AGNTCY ecosystem.</p>
+        </a>
+        <a href="{{ base_url if base_url != '.' else '' }}contributing/" class="landing-card" aria-label="How to Contribute">
+          <h3 class="landing-card__title">How to Contribute</h3>
+          <p class="landing-card__description">Contribute to AGNTCY documentation and projects.</p>
+        </a>
+      </div>
+      <div class="landing-page-content md-typeset">
+        {{ page.content }}
+      </div>
+    </div>
+  </section>
+{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}

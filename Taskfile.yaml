@@ -15,7 +15,17 @@ includes:
 
 silent: true
 
+vars:
+  BUILD_DIR: build
+  DOCS_PORT: "8001"
+
 tasks:
+  docs-deps:
+    desc: Sync MkDocs dependencies
+    dir: mkdocs
+    cmds:
+      - uv sync
+
   default:
     cmds:
       - task -l
@@ -24,3 +34,21 @@ tasks:
     desc: Get version
     cmds:
       - git describe --tags --match "v*" | cut -c 2-
+
+  build:
+    desc: Build documentation website
+    deps:
+      - docs-deps
+    vars:
+      BUILD_SITE_DIR: "{{.BUILD_DIR}}/site"
+    cmds:
+      - pushd mkdocs && uv run mkdocs build --site-dir {{.BUILD_SITE_DIR}} && popd
+      - |
+        echo "Docs available at: file://{{.BUILD_SITE_DIR}}/index.html"
+
+  run:
+    desc: Run documentation website in live editing mode
+    deps:
+      - docs-deps
+    cmds:
+      - pushd mkdocs && uv run mkdocs serve --dev-addr 127.0.0.1:{{.DOCS_PORT}} && popd
