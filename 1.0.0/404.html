@@ -212,63 +212,6 @@
 </div>
       
     
-    
-    <div class="md-header__version" data-md-component="version-selector" aria-label="Select version">
-      <span class="md-header__version-label">
-        <span class="md-header__version-title">Version</span>
-        <span class="md-ellipsis md-header__version-current">–</span>
-      </span>
-    </div>
-    <script>
-      (function() {
-        var origin = location.origin;
-        var base = new URL(".", location).href.replace(/\/$/, "");
-        var pathname = location.pathname.replace(/\/$/, "") || "/";
-        var pathParts = pathname.split("/").filter(Boolean);
-        var versionEl = document.querySelector("[data-md-component=version-selector]");
-        if (!versionEl) return;
-        var currentEl = versionEl.querySelector(".md-header__version-current");
-        fetch(base + "/versions.json").then(function(r) { return r.ok ? r.json() : []; }).then(function(versions) {
-          if (!versions.length) return;
-          function isVersion(part) {
-            return versions.some(function(v) {
-              return v.version === part || (v.aliases && v.aliases.indexOf(part) >= 0);
-            });
-          }
-          var versionInPath = pathParts.find(isVersion);
-          var currentVersion = versionInPath
-            ? versions.find(function(v) { return v.version === versionInPath || (v.aliases && v.aliases.indexOf(versionInPath) >= 0); })
-            : versions[0];
-          var current = currentVersion ? (currentVersion.title || currentVersion.version) : "–";
-          currentEl.textContent = current;
-          if (versions.length <= 1) return;
-          var select = document.createElement("select");
-          select.className = "md-header__version-select";
-          select.setAttribute("aria-label", "Select version");
-          versions.forEach(function(v) {
-            var opt = document.createElement("option");
-            opt.value = v.version;
-            opt.textContent = v.title || v.version;
-            if (currentVersion && v.version === currentVersion.version) opt.selected = true;
-            select.appendChild(opt);
-          });
-          select.addEventListener("change", function() {
-            var newVersion = this.value;
-            var prefix = "";
-            var rest = pathname;
-            if (versionInPath) {
-              var idx = pathParts.indexOf(versionInPath);
-              prefix = pathParts.slice(0, idx).join("/");
-              rest = pathParts.slice(idx + 1).join("/");
-            }
-            var newPath = (prefix ? "/" + prefix + "/" : "/") + newVersion + (rest ? "/" + rest : "/");
-            location.href = origin + newPath;
-          });
-          versionEl.appendChild(select);
-        }).catch(function() {});
-      })();
-    </script>
-    
     <a href="https://docs.agntcy.org/" target="_blank" rel="noopener noreferrer" class="md-header__button md-header__agntcy-docs" title="AGNTCY Documentation">
       AGNTCY Docs
     </a>
