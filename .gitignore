@@ -73,6 +73,9 @@ instance/
 # Sphinx documentation
 docs/_build/
 
+# MkDocs (repository docs site; see docs/Taskfile.yml)
+.build/
+
 # PyBuilder
 target
 
