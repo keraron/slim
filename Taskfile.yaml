@@ -12,6 +12,9 @@ includes:
     taskfile: data-plane/Taskfile.yaml
     flatten: true
     dir: ./data-plane
+  docs:
+    taskfile: docs/Taskfile.yml
+    flatten: false
 
 silent: true
 
