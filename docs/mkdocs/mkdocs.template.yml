@@ -8,6 +8,8 @@ site_name: MY_PROJECT_DOCS
 site_url: https://example.org/
 
 docs_dir: ..
+# Must sit outside docs_dir; matches docs Taskfile `mkdocs build --site-dir`.
+site_dir: ../../.build/site
 
 exclude_docs: |
   mkdocs/**

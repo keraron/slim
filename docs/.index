@@ -1,8 +1,6 @@
 # Site navigation (single source of truth for the left sidebar). Paths are relative to docs/.
 nav:
   - SLIM: index.md
-  - Getting started: getting-started.md
-  - Overview: slim/overview.md
   - Getting Started with SLIM:
       - Getting Started: slim/slim-howto.md
       - Configuration Reference: slim/slim-data-plane-config.md

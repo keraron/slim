@@ -1,0 +1,5 @@
+# Mike version labels to deploy to gh-pages *before* the [versions] release deploy.
+# Same sources tree each time; keeps older labels in the dropdown (e.g. 1.3.0 next to 1.3.1).
+# Remove lines you no longer want listed. Leave empty to only deploy `release` (single-version site).
+
+1.3.0

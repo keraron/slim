@@ -6,6 +6,8 @@ site_url: https://agntcy.github.io/slim/
 
 # Parent of docs/mkdocs/ — the Markdown tree under docs/
 docs_dir: ..
+# Must sit outside docs_dir (../.. is repo root); matches docs:build --site-dir.
+site_dir: ../../.build/site
 
 exclude_docs: |
   mkdocs/**
