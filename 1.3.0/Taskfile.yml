@@ -1,0 +1,183 @@
+# Copyright AGNTCY Contributors (https://github.com/agntcy)
+# SPDX-License-Identifier: CC-BY-4.0
+#
+# Docs site tasks (Taskfile lives in docs/). Requires Task >= 3.35.
+# From repo root: task -t docs/Taskfile.yml build
+# Or: task docs:build  (with includes.docs: docs/Taskfile.yml in the repo Taskfile)
+
+version: "3"
+
+interval: "500ms"
+
+vars:
+  SHARED: "{{.TASKFILE_DIR}}"
+  REPO:
+    sh: cd "{{.SHARED}}/.." && pwd
+  DOCS: "{{.SHARED}}"
+  MKDOCS: "{{.SHARED}}/mkdocs"
+  BUILD_SITE: "{{.REPO}}/.build/site"
+  SPELL_CONFIG: "{{.SHARED}}/codespellrc"
+  MD_CONFIG: "{{.SHARED}}/pymarkdown.yaml"
+  LYCHEE_CONFIG: "{{.SHARED}}/lychee.toml"
+
+tasks:
+  default:
+    desc: List tasks
+    cmds:
+      - task --list
+
+  build:
+    desc: Build documentation site to .build/site
+    cmds:
+      - mkdir -p "{{.BUILD_SITE}}"
+      - |
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          (cd "{{.MKDOCS}}" && uv run mkdocs build --site-dir "{{.BUILD_SITE}}")
+        else
+          (cd "{{.MKDOCS}}" && mkdocs build --site-dir "{{.BUILD_SITE}}")
+        fi
+      - 'echo "Docs built: file://{{.BUILD_SITE}}/index.html"'
+
+  run:
+    desc: Run mkdocs serve (live reload)
+    cmds:
+      - |
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          (cd "{{.MKDOCS}}" && uv run mkdocs serve)
+        else
+          (cd "{{.MKDOCS}}" && mkdocs serve)
+        fi
+
+  test:
+    desc: Run all documentation lint checks
+    cmds:
+      - task: lint
+
+  lint:
+    desc: Run spelling, markdown, and link checks
+    cmds:
+      - task: lint:spelling
+      - task: lint:markdown
+      - task: lint:links
+
+  lint:spelling:
+    desc: Check spelling under docs/
+    cmds:
+      - |
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          (cd "{{.MKDOCS}}" && uv run codespell --config "{{.SPELL_CONFIG}}" "{{.DOCS}}")
+        else
+          codespell --config "{{.SPELL_CONFIG}}" "{{.DOCS}}"
+        fi
+
+  lint:markdown:
+    desc: Check Markdown style under docs/
+    cmds:
+      - |
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          (cd "{{.MKDOCS}}" && uv run pymarkdown --config "{{.MD_CONFIG}}" scan "{{.DOCS}}")
+        else
+          pymarkdown --config "{{.MD_CONFIG}}" scan "{{.DOCS}}"
+        fi
+
+  lint:links:
+    desc: Check links in markdown under docs/ (requires lychee on PATH)
+    cmds:
+      - lychee --config "{{.LYCHEE_CONFIG}}" "{{.DOCS}}"
+
+  lint:fix:
+    desc: Auto-fix spelling and markdown where supported
+    cmds:
+      - task: lint:fix:spelling
+      - task: lint:fix:markdown
+
+  lint:fix:spelling:
+    desc: Apply codespell write-fixes to docs/
+    cmds:
+      - |
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          (cd "{{.MKDOCS}}" && uv run codespell --config "{{.SPELL_CONFIG}}" "{{.DOCS}}" --write-changes)
+        else
+          codespell --config "{{.SPELL_CONFIG}}" "{{.DOCS}}" --write-changes
+        fi
+
+  lint:fix:markdown:
+    desc: Apply pymarkdown fixes under docs/
+    cmds:
+      - |
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          (cd "{{.MKDOCS}}" && uv run pymarkdown --config "{{.MD_CONFIG}}" fix -r "{{.DOCS}}")
+        else
+          pymarkdown --config "{{.MD_CONFIG}}" fix -r "{{.DOCS}}"
+        fi
+
+  mike:deploy-local-versions:
+    desc: >-
+      Deploy 1.3.0 and 1.3.1 to local gh-pages (no push) so the Material version selector shows both
+    cmds:
+      - |
+        set -euo pipefail
+        (cd "{{.MKDOCS}}" && git fetch origin gh-pages --depth=1 2>/dev/null || true)
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          (cd "{{.MKDOCS}}" && uv run mike deploy 1.3.0)
+          (cd "{{.MKDOCS}}" && uv run mike deploy 1.3.1 latest --update-aliases)
+          (cd "{{.MKDOCS}}" && uv run mike set-default 1.3.1)
+          (cd "{{.MKDOCS}}" && uv run mike list)
+        else
+          (cd "{{.MKDOCS}}" && mike deploy 1.3.0)
+          (cd "{{.MKDOCS}}" && mike deploy 1.3.1 latest --update-aliases)
+          (cd "{{.MKDOCS}}" && mike set-default 1.3.1)
+          (cd "{{.MKDOCS}}" && mike list)
+        fi
+        echo "Run task mike:serve and open http://127.0.0.1:8000/ — use the version menu for 1.3.0 and 1.3.1."
+
+  mike:deploy-local:
+    desc: >-
+      Deploy current docs to local gh-pages with version from docs/mkdocs/mike_versions.ini [versions] local (+ latest alias); no git push
+    cmds:
+      - 'test -f "{{.MKDOCS}}/mike_version.py" || { echo "Add mike_version.py under docs/mkdocs (see repo)"; exit 1; }'
+      - |
+        set -euo pipefail
+        (cd "{{.MKDOCS}}" && git fetch origin gh-pages --depth=1 2>/dev/null || true)
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          MIKE_LOCAL="$(cd "{{.MKDOCS}}" && uv run python mike_version.py local)"
+          (cd "{{.MKDOCS}}" && uv run mike deploy "$MIKE_LOCAL" latest --update-aliases)
+          (cd "{{.MKDOCS}}" && uv run mike set-default latest)
+          (cd "{{.MKDOCS}}" && uv run mike list)
+        else
+          MIKE_LOCAL="$(cd "{{.MKDOCS}}" && python mike_version.py local)"
+          (cd "{{.MKDOCS}}" && mike deploy "$MIKE_LOCAL" latest --update-aliases)
+          (cd "{{.MKDOCS}}" && mike set-default latest)
+          (cd "{{.MKDOCS}}" && mike list)
+        fi
+        echo "Local gh-pages updated. Run task mike:serve and open http://127.0.0.1:8000/"
+
+  mike:deploy:
+    desc: >-
+      Push versioned docs to origin/gh-pages (mike). Set [versions] release in docs/mkdocs/mike_versions.ini or export VERSION=…
+    cmds:
+      - 'test -f "{{.MKDOCS}}/mike_version.py" || { echo "Add mike_version.py under docs/mkdocs (see repo)"; exit 1; }'
+      - |
+        set -euo pipefail
+        (cd "{{.MKDOCS}}" && git fetch origin gh-pages --depth=1 2>/dev/null || true)
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          MIKE_VERSION="$(cd "{{.MKDOCS}}" && uv run python mike_version.py release)"
+          (cd "{{.MKDOCS}}" && uv run mike deploy --push --update-aliases "$MIKE_VERSION" latest)
+          (cd "{{.MKDOCS}}" && uv run mike set-default --push latest)
+          (cd "{{.MKDOCS}}" && uv run mike list)
+        else
+          MIKE_VERSION="$(cd "{{.MKDOCS}}" && python mike_version.py release)"
+          (cd "{{.MKDOCS}}" && mike deploy --push --update-aliases "$MIKE_VERSION" latest)
+          (cd "{{.MKDOCS}}" && mike set-default --push latest)
+          (cd "{{.MKDOCS}}" && mike list)
+        fi
+
+  mike:serve:
+    desc: Serve versioned site from local gh-pages (run mike:deploy-local first)
+    cmds:
+      - |
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          (cd "{{.MKDOCS}}" && uv run mike serve -a 127.0.0.1:8000)
+        else
+          (cd "{{.MKDOCS}}" && mike serve -a 127.0.0.1:8000)
+        fi
