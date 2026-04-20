@@ -1,7 +1,7 @@
 # AGNTCY MkDocs starter — copy to docs/mkdocs/mkdocs.yml and replace placeholders.
 # Run ./docs/install.sh (and --with-mike-macros if using mike + macros).
 #
-# Parity with agntcy/docs: hooks, redirects, awesome-pages, macros, mkdocstrings,
+# Parity with agntcy/docs: hooks, redirects, macros, mkdocstrings,
 # swagger-ui-tag, include-markdown, mike, analytics + consent (replace GA property).
 
 site_name: MY_PROJECT_DOCS
@@ -12,7 +12,6 @@ docs_dir: ..
 exclude_docs: |
   mkdocs/**
   README.md
-  docs-stub/**
 
 repo_name: org/repo
 repo_url: https://github.com/org/repo
@@ -89,10 +88,6 @@ plugins:
       'messaging/slim-rpc.md': 'slim/slim-rpc.md'
       'messaging/slim-session.md': 'slim/slim-session.md'
       'messaging/slim-slimrpc-compiler.md': 'slim/slim-slimrpc-compiler.md'
-  awesome-pages:
-    filename: ".index"
-    collapse_single_pages: true
-    strict: false
   macros:
     module_name: main
     j2_variable_start_string: "[[["
@@ -152,6 +147,6 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  favicon: assets/agntcy/img/logo-light.svg
+  favicon: assets/favicon.ico
   logo_light: assets/agntcy/img/logo-light.svg
   logo_dark: assets/agntcy/img/logo-dark.svg

@@ -1,15 +1,12 @@
 # Getting started
 
-Use this page for onboarding material (install, first message, cluster layout).
+The hands-on guide is **[Getting Started (Slim)](slim/slim-howto.md)** — install, build, run the data plane, and try the bindings.
 
-For the canonical guides today, see:
+For architecture and components, read **[Overview](slim/overview.md)** and the **[configuration reference](slim/slim-data-plane-config.md)**.
 
-- [Slim how-to (docs.agntcy.org)](https://docs.agntcy.org/slim/slim-howto)
-- [Overview — components and architecture](https://docs.agntcy.org/slim/overview/)
+## Build this documentation site locally
 
-## Build this site locally
-
-From the repository root (Python 3 with `pip`):
+From the repository root:
 
 ```bash
 chmod +x docs/install.sh
@@ -18,10 +15,10 @@ python3 -m pip install -r docs/requirements-agntcy-docs-theme.txt
 task docs:run
 ```
 
-Or build a static copy under `.build/site`:
+Or build static HTML under `.build/site`:
 
 ```bash
 task docs:build
 ```
 
-See `docs/README.md` in the repository for layout, linting, and GitHub Pages (mike).
+See `docs/README.md` in the repository for layout and tooling.
