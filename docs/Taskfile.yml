@@ -111,56 +111,106 @@ tasks:
           pymarkdown --config "{{.MD_CONFIG}}" fix -r "{{.DOCS}}"
         fi
 
+  # mike: use (cd "{{.MKDOCS}}" && …), not task `dir:` — with the root Taskfile include, `dir` was applied twice and broke mkdocs.yml resolution.
+  mike:deploy-local-versions:
+    desc: >-
+      Deploy 1.3.0 and 1.3.1 to local gh-pages (no push) so the Material version selector shows both
+    cmds:
+      - |
+        set -euo pipefail
+        (cd "{{.MKDOCS}}" && git fetch origin gh-pages --depth=1 2>/dev/null || true)
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          (cd "{{.MKDOCS}}" && uv run mike deploy 1.3.0)
+          (cd "{{.MKDOCS}}" && uv run mike deploy 1.3.1 latest --update-aliases)
+          (cd "{{.MKDOCS}}" && uv run mike set-default 1.3.1)
+          (cd "{{.MKDOCS}}" && uv run mike list)
+        else
+          (cd "{{.MKDOCS}}" && mike deploy 1.3.0)
+          (cd "{{.MKDOCS}}" && mike deploy 1.3.1 latest --update-aliases)
+          (cd "{{.MKDOCS}}" && mike set-default 1.3.1)
+          (cd "{{.MKDOCS}}" && mike list)
+        fi
+        echo "Run task mike:serve and open http://127.0.0.1:8000/ — use the version menu for 1.3.0 and 1.3.1."
+
   mike:deploy-local:
     desc: >-
       Deploy current docs to local gh-pages with version from docs/mkdocs/mike_versions.ini [versions] local (+ latest alias); no git push
-    dir: "{{.MKDOCS}}"
     cmds:
-      - 'test -f mike_version.py || { echo "Add mike_version.py under docs/mkdocs (see repo)"; exit 1; }'
-      - git fetch origin gh-pages --depth=1 2>/dev/null || true
+      - 'test -f "{{.MKDOCS}}/mike_version.py" || { echo "Add mike_version.py under docs/mkdocs (see repo)"; exit 1; }'
       - |
         set -euo pipefail
-        if [ -f uv.lock ] || [ -f pyproject.toml ]; then
-          MIKE_LOCAL="$(uv run python mike_version.py local)"
-          uv run mike deploy "$MIKE_LOCAL" latest --update-aliases
-          uv run mike set-default latest
-          uv run mike list
+        (cd "{{.MKDOCS}}" && git fetch origin gh-pages --depth=1 2>/dev/null || true)
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          MIKE_LOCAL="$(cd "{{.MKDOCS}}" && uv run python mike_version.py local)"
+          (cd "{{.MKDOCS}}" && uv run mike deploy "$MIKE_LOCAL" latest --update-aliases)
+          (cd "{{.MKDOCS}}" && uv run mike set-default latest)
+          (cd "{{.MKDOCS}}" && uv run mike list)
         else
-          MIKE_LOCAL="$(python mike_version.py local)"
-          mike deploy "$MIKE_LOCAL" latest --update-aliases
-          mike set-default latest
-          mike list
+          MIKE_LOCAL="$(cd "{{.MKDOCS}}" && python mike_version.py local)"
+          (cd "{{.MKDOCS}}" && mike deploy "$MIKE_LOCAL" latest --update-aliases)
+          (cd "{{.MKDOCS}}" && mike set-default latest)
+          (cd "{{.MKDOCS}}" && mike list)
         fi
         echo "Local gh-pages updated. Run task mike:serve and open http://127.0.0.1:8000/"
 
-  mike:deploy:
+  # Full gh-pages menu: deploy extra version(s) from mike_ghpages_extra_versions.txt, then release + latest.
+  mike:deploy-pages:
     desc: >-
-      Push versioned docs to origin/gh-pages (mike). Set [versions] release in docs/mkdocs/mike_versions.ini or export VERSION=…
-    dir: "{{.MKDOCS}}"
+      Push docs to origin/gh-pages — extra versions (mike_ghpages_extra_versions.txt) then release + latest alias (mike_versions.ini)
     cmds:
-      - 'test -f mike_version.py || { echo "Add mike_version.py under docs/mkdocs (see repo)"; exit 1; }'
-      - git fetch origin gh-pages --depth=1 2>/dev/null || true
+      - 'test -f "{{.MKDOCS}}/mike_version.py" || { echo "Add mike_version.py under docs/mkdocs (see repo)"; exit 1; }'
       - |
         set -euo pipefail
-        if [ -f uv.lock ] || [ -f pyproject.toml ]; then
-          MIKE_VERSION="$(uv run python mike_version.py release)"
-          uv run mike deploy --push --update-aliases "$MIKE_VERSION" latest
-          uv run mike set-default --push latest
-          uv run mike list
+        (cd "{{.MKDOCS}}" && git fetch origin gh-pages --depth=1 2>/dev/null || true)
+        EXTRA="{{.MKDOCS}}/mike_ghpages_extra_versions.txt"
+        if [ -f "$EXTRA" ]; then
+          while read -r ev; do
+            [ -z "$ev" ] && continue
+            if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+              (cd "{{.MKDOCS}}" && uv run mike deploy --push "$ev")
+            else
+              (cd "{{.MKDOCS}}" && mike deploy --push "$ev")
+            fi
+          done < <(grep -v '^[[:space:]]*#' "$EXTRA" | grep -v '^[[:space:]]*$' || true)
+        fi
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          MIKE_VERSION="$(cd "{{.MKDOCS}}" && uv run python mike_version.py release)"
+          (cd "{{.MKDOCS}}" && uv run mike deploy --push --update-aliases "$MIKE_VERSION" latest)
+          (cd "{{.MKDOCS}}" && uv run mike set-default --push "$MIKE_VERSION")
+          (cd "{{.MKDOCS}}" && uv run mike list)
         else
-          MIKE_VERSION="$(python mike_version.py release)"
-          mike deploy --push --update-aliases "$MIKE_VERSION" latest
-          mike set-default --push latest
-          mike list
+          MIKE_VERSION="$(cd "{{.MKDOCS}}" && python mike_version.py release)"
+          (cd "{{.MKDOCS}}" && mike deploy --push --update-aliases "$MIKE_VERSION" latest)
+          (cd "{{.MKDOCS}}" && mike set-default --push "$MIKE_VERSION")
+          (cd "{{.MKDOCS}}" && mike list)
+        fi
+
+  mike:deploy:
+    desc: >-
+      Push only the release version to gh-pages (+ latest). For a full dropdown (e.g. 1.3.0 + 1.3.1), use mike:deploy-pages
+    cmds:
+      - 'test -f "{{.MKDOCS}}/mike_version.py" || { echo "Add mike_version.py under docs/mkdocs (see repo)"; exit 1; }'
+      - |
+        set -euo pipefail
+        (cd "{{.MKDOCS}}" && git fetch origin gh-pages --depth=1 2>/dev/null || true)
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          MIKE_VERSION="$(cd "{{.MKDOCS}}" && uv run python mike_version.py release)"
+          (cd "{{.MKDOCS}}" && uv run mike deploy --push --update-aliases "$MIKE_VERSION" latest)
+          (cd "{{.MKDOCS}}" && uv run mike set-default --push latest)
+          (cd "{{.MKDOCS}}" && uv run mike list)
+        else
+          MIKE_VERSION="$(cd "{{.MKDOCS}}" && python mike_version.py release)"
+          (cd "{{.MKDOCS}}" && mike deploy --push --update-aliases "$MIKE_VERSION" latest)
+          (cd "{{.MKDOCS}}" && mike set-default --push latest)
+          (cd "{{.MKDOCS}}" && mike list)
         fi
 
   mike:serve:
     desc: Serve versioned site from local gh-pages (run mike:deploy-local first)
-    dir: "{{.MKDOCS}}"
     cmds:
       - |
-        if [ -f uv.lock ] || [ -f pyproject.toml ]; then
-          uv run mike serve -a 127.0.0.1:8000
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          (cd "{{.MKDOCS}}" && uv run mike serve -a 127.0.0.1:8000)
         else
-          mike serve -a 127.0.0.1:8000
+          (cd "{{.MKDOCS}}" && mike serve -a 127.0.0.1:8000)
         fi

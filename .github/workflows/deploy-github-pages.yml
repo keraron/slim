@@ -1,0 +1,80 @@
+# SPDX-FileCopyrightText: Copyright (c) AGNTCY Contributors
+# SPDX-License-Identifier: Apache-2.0
+#
+# Publishes MkDocs (mike) to the gh-pages branch so GitHub Pages can serve the site.
+# One-time: Repo → Settings → Pages → Build and deployment → Branch → gh-pages → / (root).
+
+name: Deploy GitHub Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - '.github/workflows/deploy-github-pages.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages-mike
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Mike deploy (gh-pages)
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup Taskfile
+        shell: bash
+        run: sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
+
+      - name: Setup UV
+        shell: bash
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Update PATH
+        shell: bash
+        run: echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Install docs site assets (install.sh)
+        shell: bash
+        run: |
+          chmod +x docs/install.sh
+          ./docs/install.sh
+          ./docs/install.sh --with-mike-macros
+
+      - name: Sync Python environment (docs/mkdocs)
+        shell: bash
+        run: |
+          if [ -f docs/mkdocs/pyproject.toml ] || [ -f docs/mkdocs/uv.lock ]; then
+            (cd docs/mkdocs && uv sync)
+          else
+            python3 -m pip install -r docs/requirements-agntcy-docs-theme.txt
+          fi
+
+      - name: Configure Git for mike
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+
+      - name: Fetch gh-pages
+        continue-on-error: true
+        run: git fetch origin gh-pages --depth=1
+
+      - name: Remove retired mike versions (dropdown cleanup)
+        shell: bash
+        run: ./docs/mkdocs/delete-retired-mike-versions.sh --push
+
+      - name: Mike deploy (push to gh-pages)
+        shell: bash
+        run: task -t docs/Taskfile.yml mike:deploy-pages

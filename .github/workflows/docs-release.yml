@@ -128,9 +128,13 @@ jobs:
         continue-on-error: true
         run: git fetch origin gh-pages --depth=1
 
+      - name: Remove retired mike versions (dropdown cleanup)
+        shell: bash
+        run: ./docs/mkdocs/delete-retired-mike-versions.sh --push
+
       - name: Mike deploy
         shell: bash
-        run: task -t docs/Taskfile.yml mike:deploy
+        run: task -t docs/Taskfile.yml mike:deploy-pages
 
   git-tag:
     name: '3. Git tag'
