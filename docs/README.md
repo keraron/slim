@@ -4,17 +4,17 @@ Everything needed to build and lint the site lives under this `docs/` directory:
 
 | Path | Purpose |
 |------|---------|
-| `index.md`, `*.md`, `.index` | Page content and [awesome-pages](https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin) nav |
+| `index.md`, `slim/*.md`, … | Page content |
+| **`docs/.index`** | **Single** navigation file for the left sidebar (`nav:`). Paths are relative to `docs/` (e.g. `slim/overview.md`). Loaded by `mkdocs/hooks.py`. |
 | `mkdocs/mkdocs.yml` | MkDocs configuration (`mkdocs.starter.yml` / `mkdocs.template.yml` are templates) |
 | `mkdocs/overrides/` | Material theme partials (logo, copyright) |
 | `mkdocs/hooks.py` | SSL for `include-markdown` (uses `certifi`) |
 | `stylesheets/custom.css` | Source CSS; `install.sh` copies to `agntcy-docs.css` |
 | `assets/` | Source logos (`img/`, `logo.svg`); copied into `assets/agntcy/` for the live site |
-| `install.sh` | Syncs CSS and logos; bootstraps `mkdocs.yml` / stub pages if missing |
+| `install.sh` | Syncs CSS and logos; creates `mkdocs/mkdocs.yml` from `mkdocs.starter.yml` if missing |
 | `Taskfile.yml` | `build`, `run`, `lint`, mike helpers |
 | `requirements-agntcy-docs-*.txt` | Python dependencies for build and lint |
 | `codespellrc`, `pymarkdown.yaml`, `lychee.toml` | Lint configuration |
-| `docs-stub/` | Placeholder pages used only when `install.sh` creates a fresh `mkdocs.yml` |
 
 CI workflows under `.github/workflows/` run `./docs/install.sh`, install requirements from `docs/requirements-agntcy-docs-theme.txt`, and `task -t docs/Taskfile.yml build`.
 

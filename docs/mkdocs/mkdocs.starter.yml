@@ -10,11 +10,12 @@ docs_dir: ..
 exclude_docs: |
   mkdocs/**
   README.md
-  docs-stub/**
 
 repo_name: agntcy/slim
 repo_url: https://github.com/agntcy/slim
 edit_uri: edit/main/docs/
+
+# Navigation comes from docs/.index via hooks.py (not from this file).
 
 extra:
   version:
@@ -57,10 +58,6 @@ plugins:
     alias_type: redirect
   redirects:
     redirect_maps: {}
-  awesome-pages:
-    filename: ".index"
-    collapse_single_pages: true
-    strict: false
 
 theme:
   name: material
@@ -105,6 +102,6 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  favicon: assets/agntcy/img/logo-light.svg
+  favicon: assets/favicon.ico
   logo_light: assets/agntcy/img/logo-light.svg
   logo_dark: assets/agntcy/img/logo-dark.svg
