@@ -28,6 +28,8 @@ extra:
     repo_slug: org/repo
     org: AGNTCY
 
+  agntcy_docs_url: https://docs.agntcy.org/
+
   copyright: >
     © Copyright AGNTCY Contributors.
     <a href="#__consent">Change cookie settings</a>

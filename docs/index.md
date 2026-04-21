@@ -29,14 +29,14 @@ all while maintaining low latencies and strong security guarantees.
 SLIM is composed of two main components that work together to provide secure,
 scalable messaging infrastructure:
 
-- [SLIM Messaging Layer](./slim-data-plane.md): The data plane component
+- [SLIM Messaging Layer](./slim/slim-data-plane.md): The data plane component
   that handles message routing, delivery, and secure communication between
   applications. It consists of two layers: the session layer that provides
   end-to-end encryption (using the MLS protocol) and reliable message delivery,
   and the data plane that enables efficient message distribution across the
   network.
 
-- [SLIM Controller](./slim-controller.md): The control plane component that
+- [SLIM Controller](./slim/slim-controller.md): The control plane component that
   manages SLIM node configurations, monitors the network, and provides a unified
   interface for administering the messaging infrastructure. It enables
   centralized management of routes, connections, and node deployments.
@@ -120,4 +120,4 @@ language bindings for their communication needs. The control plane manages the
 routing infrastructure independently, ensuring the network operates efficiently.
 
 To get started with SLIM, see the [Getting Started with
-SLIM](../slim/slim-howto.md) guide.
+SLIM](./slim/slim-howto.md) guide.
