@@ -11,6 +11,7 @@ on:
   push:
     branches:
       - main
+      - docs-migration
     paths:
       - 'docs/**'
       - '.github/workflows/deploy-github-pages.yml'
