@@ -153,9 +153,41 @@ tasks:
         fi
         echo "Local gh-pages updated. Run task mike:serve and open http://127.0.0.1:8000/"
 
+  # Full gh-pages menu: deploy extra version(s) from mike_ghpages_extra_versions.txt, then release + latest.
+  mike:deploy-pages:
+    desc: >-
+      Push docs to origin/gh-pages — extra versions (mike_ghpages_extra_versions.txt) then release + latest alias (mike_versions.ini)
+    cmds:
+      - 'test -f "{{.MKDOCS}}/mike_version.py" || { echo "Add mike_version.py under docs/mkdocs (see repo)"; exit 1; }'
+      - |
+        set -euo pipefail
+        (cd "{{.MKDOCS}}" && git fetch origin gh-pages --depth=1 2>/dev/null || true)
+        EXTRA="{{.MKDOCS}}/mike_ghpages_extra_versions.txt"
+        if [ -f "$EXTRA" ]; then
+          while read -r ev; do
+            [ -z "$ev" ] && continue
+            if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+              (cd "{{.MKDOCS}}" && uv run mike deploy --push "$ev")
+            else
+              (cd "{{.MKDOCS}}" && mike deploy --push "$ev")
+            fi
+          done < <(grep -v '^[[:space:]]*#' "$EXTRA" | grep -v '^[[:space:]]*$' || true)
+        fi
+        if [ -f "{{.MKDOCS}}/uv.lock" ] || [ -f "{{.MKDOCS}}/pyproject.toml" ]; then
+          MIKE_VERSION="$(cd "{{.MKDOCS}}" && uv run python mike_version.py release)"
+          (cd "{{.MKDOCS}}" && uv run mike deploy --push --update-aliases "$MIKE_VERSION" latest)
+          (cd "{{.MKDOCS}}" && uv run mike set-default --push "$MIKE_VERSION")
+          (cd "{{.MKDOCS}}" && uv run mike list)
+        else
+          MIKE_VERSION="$(cd "{{.MKDOCS}}" && python mike_version.py release)"
+          (cd "{{.MKDOCS}}" && mike deploy --push --update-aliases "$MIKE_VERSION" latest)
+          (cd "{{.MKDOCS}}" && mike set-default --push "$MIKE_VERSION")
+          (cd "{{.MKDOCS}}" && mike list)
+        fi
+
   mike:deploy:
     desc: >-
-      Push versioned docs to origin/gh-pages (mike). Set [versions] release in docs/mkdocs/mike_versions.ini or export VERSION=…
+      Push only the release version to gh-pages (+ latest). For a full dropdown (e.g. 1.3.0 + 1.3.1), use mike:deploy-pages
     cmds:
       - 'test -f "{{.MKDOCS}}/mike_version.py" || { echo "Add mike_version.py under docs/mkdocs (see repo)"; exit 1; }'
       - |
