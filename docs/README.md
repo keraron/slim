@@ -83,7 +83,7 @@ After the first successful deploy, the site is available at **`https://<owner>.g
 
 | Workflow | When |
 |----------|------|
-| **Deploy GitHub Pages** (`.github/workflows/deploy-github-pages.yml`) | Push to `main` that touches `docs/**`, or **Actions → Run workflow** manually. Runs **`task docs:mike:deploy-pages`** (extra versions file + `release`). |
+| **Deploy GitHub Pages** (`.github/workflows/deploy-github-pages.yml`) | Push to **`main`** or **`docs-migration`** that touches `docs/**` (or this workflow file), or **Actions → Run workflow** manually. Runs **`task docs:mike:deploy-pages`**. |
 | **Docs release** (`docs-release.yml`) | Manual **Docs release** workflow: build, mike → `gh-pages`, git tag, optional GitHub Release. |
 
 Local one-shot matching CI: **`task docs:mike:deploy-pages`** (push), or **`./docs/mkdocs/publish-versioned-docs.sh`**.
