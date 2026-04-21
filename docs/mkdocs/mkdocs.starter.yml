@@ -28,6 +28,8 @@ extra:
     repo_slug: agntcy/slim
     org: AGNTCY
 
+  agntcy_docs_url: https://docs.agntcy.org/
+
   copyright: Copyright &copy; AGNTCY Contributors
 
 extra_css:
