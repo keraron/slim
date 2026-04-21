@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
     
     
       
@@ -1372,6 +1372,9 @@
 
     
   </ul>
+  <div class="md-nav__agntcy-docs">
+    <a href="https://docs.agntcy.org/" class="md-nav__agntcy-docs-link" target="_blank" rel="noopener noreferrer">AGNTCY Documentation</a>
+  </div>
 </nav>
                   </div>
                 </div>
@@ -1790,7 +1793,7 @@ example in the SLIM repo.</p>
 <li>Connect to SLIM Server: Establishes connection to the SLIM network</li>
 </ol>
 <p>Here's how the function works:</p>
-<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_local_app</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">slim_bindings</span><span class="o">.</span><span class="n">App</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">create_local_app</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">BaseConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">slim_bindings</span><span class="o">.</span><span class="n">App</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Build a Slim application instance using the global service.</span>
 
@@ -1918,7 +1921,7 @@ Each invite call returns a completion handle that should be awaited to ensure th
 <p>The group participants are implemented in a similar way, but they
 do not create the session. They create the SLIM service instance and wait
 for invites. Once they receive the invite, they can read and write on the shared channel.</p>
-<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">receive_loop</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">receive_loop</span><span class="p">(</span>
     <span class="n">local_app</span><span class="p">:</span> <span class="n">slim_bindings</span><span class="o">.</span><span class="n">App</span><span class="p">,</span>
     <span class="n">created_session</span><span class="p">:</span> <span class="n">slim_bindings</span><span class="o">.</span><span class="n">Session</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">session_ready</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">,</span>
@@ -1990,7 +1993,7 @@ an acknowledgment reply using <code>session.publish_to_async(ctx, reply, None, m
 contains "PUBLISH_TO" in its metadata (indicating it's a reply), which prevents infinite reply loops.</p>
 <h3 id="publish-messages-to-the-session">Publish Messages to the Session</h3>
 <p>All participants can publish messages on the shared channel:</p>
-<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">keyboard_loop</span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">keyboard_loop</span><span class="p">(</span>
     <span class="n">created_session</span><span class="p">:</span> <span class="n">slim_bindings</span><span class="o">.</span><span class="n">Session</span><span class="p">,</span>
     <span class="n">session_ready</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">,</span>
     <span class="n">shared_session_container</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">slim_bindings</span><span class="o">.</span><span class="n">Session</span><span class="p">],</span>

@@ -179,3 +179,37 @@ html [data-md-color-primary=black] .md-nav--primary .md-nav__title[for=__drawer]
   border-color: var(--md-default-fg-color--lightest);
   background-color: var(--md-code-bg-color);
 }
+
+/* Primary sidebar: link to umbrella AGNTCY docs (matches logo / primary palette) */
+.md-nav__agntcy-docs {
+  margin-top: 0.35rem;
+  padding: 0.65rem 0.65rem 0.85rem;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-nav__agntcy-docs-link {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border-radius: 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  color: var(--md-primary-fg-color) !important;
+  background-color: var(--md-primary-bg-color);
+  transition: filter 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.md-nav__agntcy-docs-link:hover {
+  filter: brightness(0.96);
+  color: var(--md-primary-fg-color) !important;
+}
+
+[data-md-color-scheme="slate"] .md-nav__agntcy-docs-link:hover {
+  filter: brightness(1.06);
+}

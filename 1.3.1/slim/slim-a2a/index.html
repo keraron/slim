@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
     
     
       
@@ -1211,6 +1211,9 @@
 
     
   </ul>
+  <div class="md-nav__agntcy-docs">
+    <a href="https://docs.agntcy.org/" class="md-nav__agntcy-docs-link" target="_blank" rel="noopener noreferrer">AGNTCY Documentation</a>
+  </div>
 </nav>
                   </div>
                 </div>
@@ -1448,13 +1451,13 @@
 <p>SLIM A2A provides two approaches for setting up an A2A server: a quick start method using helper functions, and an advanced method for more control.</p>
 <h4 id="quick-start">Quick Start</h4>
 <p>The quick start approach uses the <code>setup_slim_client</code> helper function to simplify SLIM initialization:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">slim_bindings</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">a2a.server.request_handlers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DefaultRequestHandler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">a2a.server.tasks</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryTaskStore</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">slima2a</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup_slim_client</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">slima2a.handler</span><span class="w"> </span><span class="kn">import</span> <span class="n">SRPCHandler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">slima2a.types.a2a_pb2_slimrpc</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_A2AServiceServicer_to_server</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">slim_bindings</span>
+<span class="kn">from</span> <span class="nn">a2a.server.request_handlers</span> <span class="kn">import</span> <span class="n">DefaultRequestHandler</span>
+<span class="kn">from</span> <span class="nn">a2a.server.tasks</span> <span class="kn">import</span> <span class="n">InMemoryTaskStore</span>
+<span class="kn">from</span> <span class="nn">slima2a</span> <span class="kn">import</span> <span class="n">setup_slim_client</span>
+<span class="kn">from</span> <span class="nn">slima2a.handler</span> <span class="kn">import</span> <span class="n">SRPCHandler</span>
+<span class="kn">from</span> <span class="nn">slima2a.types.a2a_pb2_slimrpc</span> <span class="kn">import</span> <span class="n">add_A2AServiceServicer_to_server</span>
 
 <span class="c1"># Initialize and connect to SLIM (simplified helper)</span>
 <span class="n">service</span><span class="p">,</span> <span class="n">local_app</span><span class="p">,</span> <span class="n">local_name</span><span class="p">,</span> <span class="n">conn_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">setup_slim_client</span><span class="p">(</span>
@@ -1486,12 +1489,12 @@
 <details class="note">
 <summary>Advanced Setup - Click to expand</summary>
 <p>For more control over the SLIM configuration, you can manually initialize all components:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">slim_bindings</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">a2a.server.request_handlers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DefaultRequestHandler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">a2a.server.tasks</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryTaskStore</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">slima2a.handler</span><span class="w"> </span><span class="kn">import</span> <span class="n">SRPCHandler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">slima2a.types.a2a_pb2_slimrpc</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_A2AServiceServicer_to_server</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">slim_bindings</span>
+<span class="kn">from</span> <span class="nn">a2a.server.request_handlers</span> <span class="kn">import</span> <span class="n">DefaultRequestHandler</span>
+<span class="kn">from</span> <span class="nn">a2a.server.tasks</span> <span class="kn">import</span> <span class="n">InMemoryTaskStore</span>
+<span class="kn">from</span> <span class="nn">slima2a.handler</span> <span class="kn">import</span> <span class="n">SRPCHandler</span>
+<span class="kn">from</span> <span class="nn">slima2a.types.a2a_pb2_slimrpc</span> <span class="kn">import</span> <span class="n">add_A2AServiceServicer_to_server</span>
 
 <span class="c1"># Set the event loop for slim_bindings</span>
 <span class="n">slim_bindings</span><span class="o">.</span><span class="n">slim_bindings</span><span class="o">.</span><span class="n">uniffi_set_event_loop</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">())</span>
@@ -1556,12 +1559,12 @@
 <h3 id="client-implementation">Client Implementation</h3>
 <p>Similar to the server, SLIM A2A provides both quick start and advanced client setup options.</p>
 <h4 id="quick-start_1">Quick Start</h4>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">a2a.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClientFactory</span><span class="p">,</span> <span class="n">minimal_agent_card</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">a2a.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span><span class="p">,</span> <span class="n">Part</span><span class="p">,</span> <span class="n">Role</span><span class="p">,</span> <span class="n">TextPart</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">slima2a</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup_slim_client</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">slima2a.client_transport</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClientConfig</span><span class="p">,</span> <span class="n">SRPCTransport</span><span class="p">,</span> <span class="n">slimrpc_channel_factory</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">httpx</span>
+<span class="kn">from</span> <span class="nn">a2a.client</span> <span class="kn">import</span> <span class="n">ClientFactory</span><span class="p">,</span> <span class="n">minimal_agent_card</span>
+<span class="kn">from</span> <span class="nn">a2a.types</span> <span class="kn">import</span> <span class="n">Message</span><span class="p">,</span> <span class="n">Part</span><span class="p">,</span> <span class="n">Role</span><span class="p">,</span> <span class="n">TextPart</span>
+<span class="kn">from</span> <span class="nn">slima2a</span> <span class="kn">import</span> <span class="n">setup_slim_client</span>
+<span class="kn">from</span> <span class="nn">slima2a.client_transport</span> <span class="kn">import</span> <span class="n">ClientConfig</span><span class="p">,</span> <span class="n">SRPCTransport</span><span class="p">,</span> <span class="n">slimrpc_channel_factory</span>
 
 <span class="c1"># Initialize and connect to SLIM (simplified helper)</span>
 <span class="n">service</span><span class="p">,</span> <span class="n">slim_local_app</span><span class="p">,</span> <span class="n">local_name</span><span class="p">,</span> <span class="n">conn_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">setup_slim_client</span><span class="p">(</span>
@@ -1604,12 +1607,12 @@
 <details class="note">
 <summary>Advanced Setup - Click to expand</summary>
 <p>For more control over the SLIM configuration, you can manually initialize all components:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">slim_bindings</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">a2a.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClientFactory</span><span class="p">,</span> <span class="n">minimal_agent_card</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">a2a.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span><span class="p">,</span> <span class="n">Part</span><span class="p">,</span> <span class="n">Role</span><span class="p">,</span> <span class="n">TextPart</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">slima2a.client_transport</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClientConfig</span><span class="p">,</span> <span class="n">SRPCTransport</span><span class="p">,</span> <span class="n">slimrpc_channel_factory</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">httpx</span>
+<span class="kn">import</span> <span class="nn">slim_bindings</span>
+<span class="kn">from</span> <span class="nn">a2a.client</span> <span class="kn">import</span> <span class="n">ClientFactory</span><span class="p">,</span> <span class="n">minimal_agent_card</span>
+<span class="kn">from</span> <span class="nn">a2a.types</span> <span class="kn">import</span> <span class="n">Message</span><span class="p">,</span> <span class="n">Part</span><span class="p">,</span> <span class="n">Role</span><span class="p">,</span> <span class="n">TextPart</span>
+<span class="kn">from</span> <span class="nn">slima2a.client_transport</span> <span class="kn">import</span> <span class="n">ClientConfig</span><span class="p">,</span> <span class="n">SRPCTransport</span><span class="p">,</span> <span class="n">slimrpc_channel_factory</span>
 
 <span class="c1"># Set the event loop for slim_bindings</span>
 <span class="n">slim_bindings</span><span class="o">.</span><span class="n">slim_bindings</span><span class="o">.</span><span class="n">uniffi_set_event_loop</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">())</span>
