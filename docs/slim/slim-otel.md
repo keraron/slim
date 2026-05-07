@@ -428,6 +428,6 @@ via the debug exporter.
 
 - [SLIM OpenTelemetry Collector Repository](https://github.com/agntcy/slim-otel)
 - [SLIM Project](https://github.com/agntcy/slim)
-- [SLIM Documentation](./overview.md)
+- [SLIM Documentation](../index.md)
 - [OpenTelemetry Collector Documentation](https://opentelemetry.io/docs/collector/)
 - [MLS RFC 9420](https://datatracker.ietf.org/doc/rfc9420/)

@@ -433,4 +433,4 @@ You've installed SLIM! Here's what to do next:
 
 ## Need Help?
 
-If you get stuck, check the [detailed documentation](./overview.md), ask questions in our [community forums](https://join.slack.com/t/agntcy/shared_invite/zt-3hb4p7bo0-5H2otGjxGt9OQ1g5jzK_GQ), or report issues on [GitHub](https://github.com/agntcy/slim).
+If you get stuck, check the [detailed documentation](../index.md), ask questions in our [community forums](https://join.slack.com/t/agntcy/shared_invite/zt-3hb4p7bo0-5H2otGjxGt9OQ1g5jzK_GQ), or report issues on [GitHub](https://github.com/agntcy/slim).
