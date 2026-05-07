@@ -11,6 +11,7 @@ site_dir: ../../.build/site
 
 exclude_docs: |
   mkdocs/**
+  _includes/**
   README.md
 
 repo_name: agntcy/slim
@@ -57,11 +58,12 @@ hooks:
   - hooks.py
 
 plugins:
-  search:
-  mike:
-    alias_type: redirect
-  redirects:
-    redirect_maps: {}
+  - search
+  - mike:
+      alias_type: redirect
+  - redirects:
+      redirect_maps: {}
+  - include-markdown
 
 theme:
   name: material
