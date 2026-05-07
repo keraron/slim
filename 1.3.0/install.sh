@@ -2,7 +2,7 @@
 # Copy theme CSS and logos into this docs/ tree (MkDocs serves extra_css and theme static files from docs_dir).
 # If docs/mkdocs/mkdocs.yml is missing, copies it from mkdocs.starter.yml.
 # From repo root: ./docs/install.sh
-# Optional: ./docs/install.sh --with-mike-macros  → creates docs/mkdocs/main.py from main.py.example if missing
+# Optional: ./docs/install.sh --with-mike-macros  → ensures docs/mkdocs/main.py exists (if a template is available)
 set -euo pipefail
 
 SHARED_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -27,8 +27,12 @@ fi
 
 if [[ "${1:-}" == "--with-mike-macros" ]]; then
   if [[ ! -f "$MKDOCS/main.py" ]]; then
-    cp -f "$MKDOCS/main.py.example" "$MKDOCS/main.py"
-    echo "Created $MKDOCS/main.py from main.py.example"
+    if [[ -f "$MKDOCS/main.py.example" ]]; then
+      cp -f "$MKDOCS/main.py.example" "$MKDOCS/main.py"
+      echo "Created $MKDOCS/main.py from main.py.example"
+    else
+      echo "Skipping macros scaffold: $MKDOCS/main.py.example not found."
+    fi
   else
     echo "Leaving existing $MKDOCS/main.py unchanged."
   fi
